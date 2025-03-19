@@ -51,6 +51,9 @@ func (p Plugin) Forward(ctx context.Context, r plugin.Receiver, data []byte) ([]
 	}
 	response, err := tg.Send(opts.Token, m)
 	p.log.Debugf("forward to %s with response: %s", opts.Chat, string(response))
+	if err != nil {
+		err = status.Error(codes.Unavailable, err.Error())
+	}
 	return response, err
 }
 
