@@ -1,6 +1,6 @@
 module github.com/k1nky/tookhook-plugin-telegram
 
-go 1.20
+go 1.22
 
 require (
 	github.com/hashicorp/go-plugin v1.6.1
