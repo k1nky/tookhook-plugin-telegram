@@ -21,7 +21,7 @@ type Plugin struct {
 	log *logger.Logger
 }
 
-func (p Plugin) Validate(ctx context.Context, r plugin.Receiver) error {
+func (p Plugin) Validate(ctx context.Context, r plugin.Handler) error {
 	opts, err := options.New(r.Options)
 	if err != nil {
 		p.log.Errorf("validate: %v", err)
@@ -38,7 +38,7 @@ func (p Plugin) Health(ctx context.Context) error {
 	return nil
 }
 
-func (p Plugin) Forward(ctx context.Context, r plugin.Receiver, data []byte) ([]byte, error) {
+func (p Plugin) Forward(ctx context.Context, r plugin.Handler, data []byte) ([]byte, error) {
 	opts, err := options.New(r.Options)
 	if err != nil {
 		p.log.Errorf("forward: %v", err)
